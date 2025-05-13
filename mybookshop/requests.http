@@ -1,0 +1,53 @@
+@server = http://localhost:4004/odata/v4
+ 
+### Get all books
+GET {{server}}/catalog/Books
+ 
+### Get all authors
+GET {{server}}/catalog/Authors
+ 
+### Create new author
+POST {{server}}/catalog/Authors
+Content-Type: application/json
+ 
+{
+  "ID": 200,
+  "name": "William Shakespeare",
+  "dateOfBirth": "1564-04-26"
+}
+
+### submitOrder
+POST {{server}}/catalog/submitOrder
+Content-Type: application/json
+
+{
+  "book": 251,
+  "quantity": 1
+}
+
+### submitOrder (quantity zero)
+POST {{server}}/catalog/submitOrder
+Content-Type: application/json
+
+{
+  "book": 251,
+  "quantity": 0
+}
+
+### submitOrder (book does not exist)
+POST {{server}}/catalog/submitOrder
+Content-Type: application/json
+
+{
+  "book": 2510,
+  "quantity": 1
+}
+
+### submitOrder (quantity exeeds stock)
+POST {{server}}/catalog/submitOrder
+Content-Type: application/json
+
+{
+  "book": 251,
+  "quantity": 1000
+}

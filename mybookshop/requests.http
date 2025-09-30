@@ -13,7 +13,7 @@ Content-Type: application/json
 
 {
     "ID": 257,
-    "name": "antika",
+    "name": "William Shakespeare",
     "dateOfBirth": "1564-04-26"
 }
 

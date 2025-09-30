@@ -41,4 +41,13 @@ describe('My Bookstore APIs', () => {
             { ID: 271, title: 'Catweazle', IsActiveEntity: true },
         ])
     })
+    it('correctly sums up totalStock', async () => {
+        const calculatedTotalStock = (await GET`/odata/v4/catalog/totalStock()`).data.stock;
+        const stockValues = (await GET`/odata/v4/catalog/Books`).data.value.map(book => book.stock)
+
+        let totalStock = 0;
+        for (const stock of stockValues) totalStock += stock;
+
+        expect(calculatedTotalStock).to.eql(totalStock)
+    })    
 })

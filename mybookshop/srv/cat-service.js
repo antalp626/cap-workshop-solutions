@@ -27,7 +27,6 @@ class CatalogService extends cds.ApplicationService {
 
             if(quantity < 1)
                 return req.reject(400, 'quantity cannot be less than 1')
-        
 
             const result = await SELECT.one`stock`.from(Books).where({ ID: book })
             if (!result)
@@ -46,4 +45,20 @@ class CatalogService extends cds.ApplicationService {
     } 
 }
 
-module.exports = CatalogService
+class ExternalService extends cds.ApplicationService {
+    async init() {
+        const { API_BP } = this.entities;
+        
+        const bupa = await cds.connect.to('API_BUSINESS_PARTNER');
+        
+        const headers = {
+            'APIKey': '<API KEY from https://api.sap.com/settings - Show API Key>'
+        }
+        this.on("READ", API_BP, async (req) => {
+            console.log('getting data from API Hub S/4HANA Sandbox System ')
+            const query = req.query
+            return bupa.send({ query, headers });
+        });
+    }
+}
+module.exports = { CatalogService, ExternalService }

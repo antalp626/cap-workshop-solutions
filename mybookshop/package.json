@@ -4,10 +4,13 @@
   "description": "A simple CAP project.",
   "dependencies": {
     "@cap-js/hana": "^2",
+    "@sap-cloud-sdk/http-client": "^4.1.2",
     "@sap/cds": "^9",
     "@sap/xssec": "^4",
     "axios": "^1.12.2",
-    "express": "^4"
+    "express": "^4",
+    "@sap-cloud-sdk/connectivity": "^3",
+    "@sap-cloud-sdk/resilience": "^3"
   },
   "devDependencies": {
     "@cap-js/cds-test": "^0.4.0",
@@ -62,6 +65,14 @@
       "[production]": {
         "db": "hana",
         "auth": "xsuaa"
+      },
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "credentials": {
+          "destination": "S4_sandbox",
+          "path": "/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
+        }
       }
     }
   },

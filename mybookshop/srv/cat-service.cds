@@ -1,4 +1,6 @@
 using my.bookshop as my from '../db/schema';
+using { API_BUSINESS_PARTNER as external } from './external/API_BUSINESS_PARTNER';
+
 
 @(requires: 'authenticated-user')
 service CatalogService {
@@ -35,5 +37,19 @@ service CatalogService {
 
     action   submitOrder(book: Books:ID, quantity: Integer) returns {
         stock : Integer
+    };
+}
+
+service ExternalService {
+    entity API_BP as projection on external.A_BusinessPartner{
+        BusinessPartner,
+        Customer,
+        Supplier,
+        AcademicTitle,
+        AuthorizationGroup,
+        BusinessPartnerCategory,
+        BusinessPartnerFullName,
+        BusinessPartnerGrouping,
+        BusinessPartnerName
     };
 }

@@ -43,6 +43,33 @@ class CatalogService extends cds.ApplicationService {
     
             return { newStock }            
         })
+
+        this.on("approveBook", async req => {
+            const {book, author} = req.data
+            const workflowContent = {
+                "definitionId": "us10.86029560trial.bookapproval.approveBook",
+                "context": {
+                    "book": book,
+                    "author": author
+                }
+            };
+            console.log(workflowContent);
+            const ProcessAutomation = await cds.connect.to('ProcessAutomation');
+            const workflowResult = await ProcessAutomation.send(
+                'POST',
+                '/workflow-instances',
+                JSON.stringify(workflowContent),
+                {
+                    "Content-Type": "application/json"
+                }
+            );
+            const result = {
+                status: workflowResult.status,
+                id: workflowResult.id
+            }
+            return result;
+        })
+                
         await super.init()
     } 
 }

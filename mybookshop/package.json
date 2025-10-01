@@ -32,7 +32,32 @@
   "cds": {
     "requires": {
       "[development]": {
-        "db": "sqlite"
+        "db": "sqlite",
+        "auth": {
+          "kind": "mocked",
+          "users": {
+            "admin@example.com": {
+              "password": "initial",
+              "ID": "admin@example.com",
+              "roles": [
+                "Admin"
+              ],
+              "attr": {
+                "country": "UK"
+              }
+            },
+            "user1@example.com": {
+              "password": "initial",
+              "ID": "user1@example.com",
+              "roles": [
+                "authenticated-user"
+              ],
+              "attr": {
+                "country": "UK"
+              }
+            }
+          }
+        }
       },
       "[production]": {
         "db": "hana",

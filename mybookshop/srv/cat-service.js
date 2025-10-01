@@ -2,7 +2,7 @@ const cds = require('@sap/cds')
 
 class CatalogService extends cds.ApplicationService {
     async init() {
-        const { Books } = this.entities
+        const { Books, Authors } = this.entities
 
         this.before('READ', Books, req => {
             console.log(req.path)
@@ -10,6 +10,10 @@ class CatalogService extends cds.ApplicationService {
 
         this.after('READ', Books, each => {
             if (each.stock < 20) each.title += ` (only a few left)`
+        })
+
+        this.before('CREATE', Authors, req => {
+            req.data.nationality === req.user.attr.country || req.reject(403)
         })
 
         this.on('totalStock', async()=>

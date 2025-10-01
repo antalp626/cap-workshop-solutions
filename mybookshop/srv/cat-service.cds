@@ -1,13 +1,35 @@
 using my.bookshop as my from '../db/schema';
 
+@(requires: 'authenticated-user')
 service CatalogService {
-    entity Books   as
+    entity Books 
+    @(restrict : [
+        {
+            grant: ['READ'],
+            to   : ['authenticated-user']
+        },
+        {
+            grant: ['*'],
+            to   : ['Admin']
+        }
+    ]) as
         projection on my.Books {
             *,
             author.name as author_name
         };
 
-    entity Authors as projection on my.Authors;
+    entity Authors 
+    @(restrict : [
+          {
+                grant : [ 'READ' ],
+                to :    [ 'authenticated-user' ]
+            },
+            {
+                grant : [ '*' ],
+                to : [ 'Admin' ]
+            }
+     ])
+    as projection on my.Authors;
 
     function totalStock()                                   returns Integer;
 

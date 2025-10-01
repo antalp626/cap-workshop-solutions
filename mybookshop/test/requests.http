@@ -2,9 +2,11 @@
 
 ### Get all books
 GET {{server}}/catalog/Books
+Authorization: Basic user1@example.com:initial
 
 ### Get all authors
 GET {{server}}/catalog/Authors
+Authorization: Basic user1@example.com:initial
 
 
 ### Create new author
@@ -15,6 +17,56 @@ Content-Type: application/json
     "ID": 257,
     "name": "William Shakespeare",
     "dateOfBirth": "1564-04-26"
+}
+
+### Create new author (with nationality)
+POST {{server}}/catalog/Authors HTTP/1.1
+Content-Type: application/json
+Authorization: Basic admin@example.com:initial
+
+{
+  "ID": 12333,
+  "name": "Charles Dickens",
+  "dateOfBirth": "1812-02-07",
+  "nationality": "UK"
+}
+
+### Create new book (unauthorized)
+POST {{server}}/catalog/Books
+Content-Type: application/json
+ 
+{
+  "ID": 280,
+  "title": "The Black Cat",
+  "author_ID": 150,
+  "stock": 12,
+  "price": 18.75
+}
+
+### Create new book (authorized, but forbidden)
+POST {{server}}/catalog/Books
+Content-Type: application/json
+Authorization: Basic user1@example.com:initial
+ 
+{
+  "ID": 280,
+  "title": "The Black Cat",
+  "author_ID": 150,
+  "stock": 12,
+  "price": 18.75
+}
+
+### Create new book (with Admin user --> should work)
+POST {{server}}/catalog/Books
+Content-Type: application/json
+Authorization: Basic admin@example.com:initial
+ 
+{
+  "ID": 280,
+  "title": "The Black Cat",
+  "author_ID": 150,
+  "stock": 12,
+  "price": 18.75
 }
 
 ### Get totalStock
@@ -32,6 +84,7 @@ Content-Type: application/json
 ### submitOrder
 POST {{server}}/catalog/submitOrder
 Content-Type: application/json
+Authorization: Basic user1@example.com:initial
 
 {
   "book": 251,
@@ -41,6 +94,7 @@ Content-Type: application/json
 ### submitOrder (quantity zero)
 POST {{server}}/catalog/submitOrder
 Content-Type: application/json
+Authorization: Basic user1@example.com:initial
 
 {
   "book": 251,
@@ -50,6 +104,7 @@ Content-Type: application/json
 ### submitOrder (book does not exist)
 POST {{server}}/catalog/submitOrder
 Content-Type: application/json
+Authorization: Basic user1@example.com:initial
 
 {
   "book": 2510,
@@ -59,8 +114,10 @@ Content-Type: application/json
 ### submitOrder (quantity exeeds stock)
 POST {{server}}/catalog/submitOrder
 Content-Type: application/json
+Authorization: Basic user1@example.com:initial
 
 {
   "book": 251,
   "quantity": 1000
 }
+

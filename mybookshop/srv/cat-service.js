@@ -1,4 +1,5 @@
 const cds = require('@sap/cds')
+const LOG = cds.log('BooksLogs')
 
 class CatalogService extends cds.ApplicationService {
     async init() {
@@ -10,6 +11,7 @@ class CatalogService extends cds.ApplicationService {
 
         this.after('READ', Books, each => {
             if (each.stock < 20) each.title += ` (only a few left)`
+            LOG.info('Only few books left for ' + each.title)
         })
 
         this.before('CREATE', Authors, req => {

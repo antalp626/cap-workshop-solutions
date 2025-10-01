@@ -1,42 +1,42 @@
 {
-  "scopes": [
+ "scopes": [
+  {
+   "name": "$XSAPPNAME.Admin",
+   "description": "Admin"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "country",
+   "description": "Country",
+   "valueType": "s",
+   "valueRequired": true
+  }
+ ],
+ "role-templates": [
+  {
+   "name": "Admin",
+   "description": "generated",
+   "scope-references": [
+    "$XSAPPNAME.Admin"
+   ],
+   "attribute-references": [
     {
-      "name": "$XSAPPNAME.Admin",
-      "description": "Admin"
+     "name": "country",
+     "default-values": [
+      "UK"
+     ]
     }
-  ],
-  "attributes": [
-    {
-      "name": "country",
-      "description": "Country",
-      "valueType": "s",
-      "valueRequired": true
-    }
-  ],
-  "role-templates": [
-    {
-      "name": "Admin",
-      "description": "generated",
-      "scope-references": [
-        "$XSAPPNAME.Admin"
-      ],
-      "attribute-references": [
-        {
-          "name": "country",
-          "default-values": [
-            "UK"
-          ]
-        }
-      ]
-    }
-  ],
+   ]
+  }
+ ],
  "role-collections": [
-    {
-      "name": "CatalogAdmin",
-      "description": "Administrator Role Collection",
-      "role-template-references": [
-        "$XSAPPNAME.Admin"
-      ]
-    }
-  ]  
+  {
+   "name": "CatalogAdmin",
+   "description": "Administrator Role Collection",
+   "role-template-references": [
+    "$XSAPPNAME.Admin"
+   ]
+  }
+ ]
 }

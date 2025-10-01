@@ -73,7 +73,8 @@
           "destination": "S4_sandbox",
           "path": "/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
         }
-      }
+      },
+      "application-logging": true
     }
   },
   "workspaces": [

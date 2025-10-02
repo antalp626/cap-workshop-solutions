@@ -74,6 +74,12 @@
           "path": "/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER"
         }
       },
+      "ProcessAutomation": {
+        "kind": "rest",
+        "credentials": {
+          "destination": "processautomation"
+        }
+      },      
       "application-logging": true
     }
   },

@@ -121,3 +121,13 @@ Authorization: Basic user1@example.com:initial
   "quantity": 1000
 }
 
+### approveBook (Build Process Automation)
+
+POST {{server}}/catalog/approveBook
+Content-Type: application/json
+Authorization: Basic admin@example.com:initial
+
+{
+  "book": "My new book",
+  "author": "Moritz"
+}

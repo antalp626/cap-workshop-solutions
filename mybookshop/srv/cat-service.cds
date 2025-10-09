@@ -38,6 +38,11 @@ service CatalogService {
     action   submitOrder(book: Books:ID, quantity: Integer) returns {
         stock : Integer
     };
+
+    action approveBook(book : Books:title, author : Authors:name) returns {
+        status: String;
+        id: String
+    }
 }
 
 service ExternalService {

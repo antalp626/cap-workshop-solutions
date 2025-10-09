@@ -66,9 +66,12 @@ class CatalogService extends cds.ApplicationService {
             const result = {
                 status: workflowResult.status,
                 id: workflowResult.id
-            }        
+            }
+            return result;        
+        })
+
         await super.init()
-    } 
+    }
 }
 
 class ExternalService extends cds.ApplicationService {

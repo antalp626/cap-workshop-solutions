@@ -4,12 +4,12 @@
   "description": "A simple CAP project.",
   "dependencies": {
     "@cap-js/hana": "^2",
-    "@sap-cloud-sdk/connectivity": "^3",
+    "@sap-cloud-sdk/http-client": "^4.1.2", 
     "@sap/cds": "^9",
     "@sap/xssec": "^4",
     "axios": "^1.12.2",
     "express": "^4",
-    "@sap-cloud-sdk/http-client": "^3",
+    "@sap-cloud-sdk/connectivity": "^3",
     "@sap-cloud-sdk/resilience": "^3"    
   },
   "devDependencies": {

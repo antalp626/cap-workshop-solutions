@@ -71,7 +71,7 @@ class CatalogService extends cds.ApplicationService {
         })
 
         await super.init()
-    }
+    } 
 }
 
 class ExternalService extends cds.ApplicationService {
@@ -80,13 +80,10 @@ class ExternalService extends cds.ApplicationService {
         
         const bupa = await cds.connect.to('API_BUSINESS_PARTNER');
         
-        const headers = {
-            'APIKey': '<API KEY from https://api.sap.com/settings - Show API Key>'
-        }
         this.on("READ", API_BP, async (req) => {
             console.log('getting data from API Hub S/4HANA Sandbox System ')
             const query = req.query
-            return bupa.send({ query, headers });
+            return bupa.send({ query });
         });
     }
 }
